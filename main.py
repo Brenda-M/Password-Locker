@@ -29,15 +29,46 @@ def main():
 
       save_users(create_user(first_name, last_name, nick_name, password))
       print('\n')
-      print(f"New account created for {first_name} {last_name}")
-      print(f"Your password is {password}")
+      print(f"Thank you for joining us {first_name} {last_name}")
+      print(f"Your username and password are {nick_name} and {password} respectively")
     
     elif short_code == 'li':
       print("We are glad that you are here. \n Enter your details below to log in to your account")
       nick_name = input("Nickname: ")
       password = str(input("Password: "))
       
-      if user_exists == nick_name:
-        print(f"Welcome {nick_name}. \n Choose one of the options below to proceed")
-        
-        
+      # if user_exists == nick_name:
+      #   print(f"Welcome {nick_name}. \n Choose one of the options below to proceed")
+
+      #   while True:
+      #     print("cc - Add a credential \n dc- Display credentials \n c - Copy password \n ex - Exit")    
+      #     short_code = input ("Enter code: ").lower()
+      #     if short_code == "cc":
+      #       print("Enter your credentials below")
+      #       account_name = input("Name of site: ")
+      #       user_name = input ("Username: ")
+
+      #       while True:
+      #         print("Enter op to create your own custom password and gp to generate one")
+      #         password_choice == input().lower()
+
+      #         if password_choice == "op":
+      #           password = input("Enter a password: ")
+      #           break
+      #         elif password_choice == "gp":
+      #           password = generate_password()
+      #           break
+          #     else:
+          #       print("The code you have entered does not exist. Please try again")
+      
+          # elif short_code == "ex":
+          #   print("You have been logged out. Goodbye!!")
+          # else:
+          #   print("Please check your short code and try again")
+
+    # elif short_code == "ex":
+    #   print("We are sorry to see you leave. Goodbye!!")
+    #   break
+
+    # else:
+    #   print("Please check your short code and try again")

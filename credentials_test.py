@@ -25,6 +25,11 @@ class TestCredentials(unittest.TestCase):
     self.new_credential.delete_credential()
     self.assertEqual(len(Credentials.credentials_list), 1)
   
+  # def test_generate_password(self):
+  #   self.test_credential = Credentials("Bree95", "gmail", "")
+  #   self.test_credential.password = generate_password()
+  #   self.assertEqual()
+  
   
 
 

@@ -12,14 +12,12 @@ class TestUsers(unittest.TestCase):
     '''
     Method that runs before each test case to ensure objects are being instantiated correctly
     '''
-    self.new_user = User("Brenda", "Muthoni", "BMuthoni", "4676jl")
+    self.new_user = User("BMuthoni", "4676jl")
   
   def tearDown(self):
     User.users_list = []
   
   def test_init(self):
-    self.assertEqual(self.new_user.first_name, "Brenda")
-    self.assertEqual(self.new_user.last_name, "Muthoni")
     self.assertEqual(self.new_user.user_name, "BMuthoni")
     self.assertEqual(self.new_user.password,"4676jl")
   
@@ -32,10 +30,18 @@ class TestUsers(unittest.TestCase):
   
   def test_delete_user(self):
     self.new_user.save_user()
-    test_user = User("Brenda", "Muthoni", "BMuthoni", "4676jl")
+    test_user = User("BMuthoni", "4676jl")
     test_user.save_user()
     self.new_user.delete_user()
     self.assertEqual(len(User.users_list), 1)
+  
+  def test_user_exists(self):
+    self.new_user.save_user()
+    test_user = User("BMuthoni", "4676jl")
+    test_user.save_user()
+    user_exist = User.user_exists("BMuthoni")
+    self.assertTrue(user_exist)
+
   
 if __name__ == '__main__':
   unittest.main()
