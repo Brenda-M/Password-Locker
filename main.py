@@ -17,7 +17,7 @@ def main():
   print("Hello There! Welcome to the password vault")
 
   while True:
-    print("Use these short codes to navigate through the vault: \n ca - To create an account \n l - To log In \n ex - To Exit")
+    print("Use these short codes to navigate through the vault: \n ca - To create an account \n li - To log In \n ex - To Exit")
     short_code = input("Enter your option here: ").lower()
 
     if short_code == 'ca':
@@ -30,4 +30,14 @@ def main():
       save_users(create_user(first_name, last_name, nick_name, password))
       print('\n')
       print(f"New account created for {first_name} {last_name}")
-      print(f "Your password is {password}")
+      print(f"Your password is {password}")
+    
+    elif short_code == 'li':
+      print("We are glad that you are here. \n Enter your details below to log in to your account")
+      nick_name = input("Nickname: ")
+      password = str(input("Password: "))
+      
+      if user_exists == nick_name:
+        print(f"Welcome {nick_name}. \n Choose one of the options below to proceed")
+        
+        
