@@ -99,3 +99,7 @@ def main():
       break
     else:
       print("Please check your short code and try again")
+
+if __name__ == '__main__':
+	main()
+
