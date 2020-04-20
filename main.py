@@ -9,6 +9,9 @@ def create_user(fname, lname, nname, password):
 def save_users(user):
   user.save_user()
 
+def del_user(user):
+  user.delete_user()
+
 def main(): 
 
   print("Hello There! Welcome to the password vault")
@@ -25,3 +28,6 @@ def main():
       password = input (" Enter your password: ")
 
       save_users(create_user(first_name, last_name, nick_name, password))
+      print('\n')
+      print(f"New account created for {first_name} {last_name}")
+      print(f "Your password is {password}")
