@@ -1,16 +1,23 @@
 #/usr/bin/env python
 
-from user_credentials import User
+import pyperclip
+from user_credentials import User, Credentials
 
-def create_user(fname, lname, nname, password):
-  new_user = User(fname, lname, nname, password)
+def create_user(username, password):
+  new_user = User(username, password)
   return new_user
 
-def save_users(user):
+def save_user(user):
   user.save_user()
 
 def del_user(user):
   user.delete_user()
+
+def verify_user(user_name, password):
+  finding_user = Credentials.find_user(user_name, password)
+  return finding_user
+
+
 
 def main(): 
 
@@ -37,38 +44,38 @@ def main():
       nick_name = input("Nickname: ")
       password = str(input("Password: "))
       
-      # if user_exists == nick_name:
-      #   print(f"Welcome {nick_name}. \n Choose one of the options below to proceed")
+      if user_exists == nick_name:
+        print(f"Welcome {nick_name}. \n Choose one of the options below to proceed")
 
-      #   while True:
-      #     print("cc - Add a credential \n dc- Display credentials \n c - Copy password \n ex - Exit")    
-      #     short_code = input ("Enter code: ").lower()
-      #     if short_code == "cc":
-      #       print("Enter your credentials below")
-      #       account_name = input("Name of site: ")
-      #       user_name = input ("Username: ")
+        while True:
+          print("cc - Add a credential \n dc- Display credentials \n c - Copy password \n ex - Exit")    
+          short_code = input ("Enter code: ").lower()
+          if short_code == "cc":
+            print("Enter your credentials below")
+            account_name = input("Name of site: ")
+            user_name = input ("Username: ")
 
-      #       while True:
-      #         print("Enter op to create your own custom password and gp to generate one")
-      #         password_choice == input().lower()
+            while True:
+              print("Enter op to create your own custom password and gp to generate one")
+              password_choice == input().lower()
 
-      #         if password_choice == "op":
-      #           password = input("Enter a password: ")
-      #           break
-      #         elif password_choice == "gp":
-      #           password = generate_password()
-      #           break
-          #     else:
-          #       print("The code you have entered does not exist. Please try again")
+              if password_choice == "op":
+                password = input("Enter a password: ")
+                break
+              elif password_choice == "gp":
+                password = generate_password()
+                break
+              else:
+                print("The code you have entered does not exist. Please try again")
       
-          # elif short_code == "ex":
-          #   print("You have been logged out. Goodbye!!")
-          # else:
-          #   print("Please check your short code and try again")
+          elif short_code == "ex":
+            print("You have been logged out. Goodbye!!")
+          else:
+            print("Please check your short code and try again")
 
-    # elif short_code == "ex":
-    #   print("We are sorry to see you leave. Goodbye!!")
-    #   break
+    elif short_code == "ex":
+      print("We are sorry to see you leave. Goodbye!!")
+      break
 
-    # else:
-    #   print("Please check your short code and try again")
+    else:
+      print("Please check your short code and try again")
