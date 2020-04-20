@@ -17,7 +17,14 @@ def verify_user(user_name, password):
   finding_user = Credentials.find_user(user_name, password)
   return finding_user
 
+def save_credentials(credential):
+  Credentials.save_credentials(credential)
 
+def display_credential(user_name):
+  return Credentials.display_credentials(user_name)
+
+def copy_credential(account_name):
+  return Credentials.copy_credentials(account_name)
 
 def main(): 
 
