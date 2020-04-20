@@ -30,5 +30,12 @@ class TestUsers(unittest.TestCase):
     self.new_user.save_user() #saving a new user 
     self.assertEqual(len(User.users_list), 1)
   
+  def test_delete_user(self):
+    self.new_user.save_user()
+    test_user = User("Brenda", "Muthoni", "BMuthoni", "4676jl")
+    test_user.save_user()
+    self.new_user.delete_user()
+    self.assertEqual(len(User.users_list), 1)
+  
 if __name__ == '__main__':
   unittest.main()
