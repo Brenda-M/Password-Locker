@@ -18,7 +18,12 @@ class TestCredentials(unittest.TestCase):
     self.new_credential.save_credentials()
     self.assertEqual(len(Credentials.credentials_list), 1)
 
- 
+  def test_delete_credentials(self):
+    self.new_credential.save_credentials()
+    test_credential = Credentials("Brenda", "gmail", "4676jl")
+    test_credential.save_credentials()
+    self.new_credential.delete_credential()
+    self.assertEqual(len(Credentials.credentials_list), 1)
   
   
 
