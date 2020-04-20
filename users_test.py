@@ -14,6 +14,9 @@ class TestUsers(unittest.TestCase):
     '''
     self.new_user = User("Brenda", "Muthoni", "BMuthoni", "4676jl")
   
+  def tearDown(self):
+    User.users_list = []
+  
   def test_init(self):
     self.assertEqual(self.new_user.first_name, "Brenda")
     self.assertEqual(self.new_user.last_name, "Muthoni")
