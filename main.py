@@ -1,7 +1,6 @@
-#/usr/bin/env python
-
-import pyperclip
+#!/usr/bin/env python
 from user_credentials import User, Credentials
+import pyperclip
 
 def create_user(username, password):
   new_user = User(username, password)
@@ -39,9 +38,10 @@ def main():
   print("Hello There! Welcome to the password vault")
 
   while True:
+    print('\n')
+    print('-' * 20)
     print("Use these short codes to navigate through the vault: \n ca - To create an account \n li - To log In \n ex - To Exit")
     short_code = input("Enter your option here: ").lower()
-
     if short_code == 'ca':
       print("To create a new account: ")
       user_name = input ("Enter a username: ")
