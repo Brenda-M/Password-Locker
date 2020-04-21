@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 from user_credentials import User, Credentials
 import pyperclip
+import string
+import random
 
 def create_user(username, password):
   new_user = User(username, password)
@@ -29,37 +31,37 @@ def display_credential(user_name):
 def copy_credential(account_name):
   return Credentials.copy_credentials(account_name)
 
-def generate_password():
-  gen_password = Credentials.generate_password()
-  return gen_password
-
 def main(): 
-
+  print('')
   print("Hello There! Welcome to the password vault")
-
   while True:
-    print('\n')
-    print('-' * 20)
+    print('-' * 70)
     print("Use these short codes to navigate through the vault: \n ca - To create an account \n li - To log In \n ex - To Exit")
-    short_code = input("Enter your option here: ").lower()
+    short_code = input("Enter code here: ").lower()
+
+    print('')
+    print('-' * 70)
+
     if short_code == 'ca':
       print("To create a new account: ")
       user_name = input ("Enter a username: ")
-      password = input (" Create a password: ")
+      password = input ("Create a password: ")
       save_user(create_user(user_name, password))
-      print('\n')
+      print('')
       print(f"Thank you for joining us {user_name}")
       print(f"The password to your account is {password}") 
+
     elif short_code == 'li':
-      print("We are glad that you are here. \n Enter your details below to log in to your account")
+      print("We are glad that you are here.\nEnter your details below to log in to your account")
       user_name = input("Username: ")
       password = str(input("Password: "))
       user_exists = verify_user(user_name, password)
       
       if user_exists == user_name:
-        print(f"Welcome {user_name}. \n Choose one of the options below to proceed")
+        print('-' * 70)
+        print(f"Welcome {user_name}. \nChoose one of the options below to proceed")
         while True:
-          print("cc - Add a credential \n dc- Display credentials \n c - Copy password \n ex - Exit")    
+          print("cc - Add a credential \ndc- Display credentials \nc - Copy password \nex - Exit")    
           short_code = input ("Enter code: ").lower()
           if short_code == "cc":
             print("Enter your credentials below")
@@ -72,7 +74,10 @@ def main():
                 password = input("Enter a password: ")
                 break
               elif password_choice == "gp":
-                password = generate_password()
+                def generate_password(length):
+                  letters = string.ascii_letters + string.digits + string.punctuation
+                  return ''.join((random.choice(letters)) for i in range(length))
+                password = generate_password(8)
                 break
               elif password_choice == "ex":
                 break
