@@ -20,6 +20,10 @@ class User:
     User.users_list.remove(self)
   
   @classmethod
+  def display_users(cls):
+    return cls.users_list
+  
+  @classmethod
   def user_exists(cls, user_name):
     for user in cls.users_list:
       if user == user_name:
@@ -29,7 +33,7 @@ class User:
 
 class Credentials:
   '''
-  Class that generates account credentials and passwords.
+  Class that generates account credentials and displays them.
 
   '''
   credentials_list = []
@@ -47,15 +51,14 @@ class Credentials:
   def delete_credential(self):
     Credentials.credentials_list.remove(self)
   
-  def generate_password(self, size = 8, chars=string.ascii_letters + string.digits + string.punctuation):
-    generated_password = ''.join(random.choice(chars) for _ in range(size))
-    return generated_password
-  
   @classmethod
-  def display_credentials(cls, user_name):
+  def find_by_user_name(cls, user_name):
+    user_credentials_list = []
     for credential in cls.credentials_list:
-      print(credential)
-  
+      if credential.user_name == user_name:
+        user_credentials_list.append(credential)
+        return user_credentials_list
+				
   @classmethod
   def find_by_account_name(cls, account_name):
     for credential in cls.credentials_list:
@@ -66,6 +69,14 @@ class Credentials:
   def copy_credentials(cls, account_name):
     copy_credential = Credentials.find_by_account_name(account_name)
     return pyperclip.copy(copy_credential.password)
+  
+  @classmethod
+  def find_user(cls, user_name, password):
+    current_user = ''
+    for user in User.users_list:
+      if user.user_name == user_name and user.password == password:
+        current_user = user.user_name
+        return current_user
 
     
 
