@@ -29,6 +29,7 @@ class User:
   def find_user(cls, user_name, password):
     '''
     find_user method verifies whether a user has been saved in the users_list
+
     '''
     current_user = ''
     for user in User.users_list:
@@ -42,7 +43,6 @@ class Credentials:
 
   '''
   credentials_list = []
-  user_credentials_list = []
 
   def __init__(self, user_name, account_name, password):
     self.user_name = user_name
@@ -52,25 +52,24 @@ class Credentials:
   def save_credentials(self):
     '''
     save_credentials method saves a credential object into the credentials_list
+
     '''
     Credentials.credentials_list.append(self)
   
   def delete_credential(self):
     '''
     delete_credentials method removes a saved credential from the credentials_list
+    
     '''
     Credentials.credentials_list.remove(self)
-  
+
   @classmethod
-  def find_by_user_name(cls, user_name):
+  def display_credentials(cls):
     '''
-    This method searches the credentials_list by user_name and appends the information to a new empty list
+    This method returns the list of credentials
+
     '''
-    user_credentials_list = []
-    for credential in cls.credentials_list:
-      if credential.user_name == user_name:
-        user_credentials_list.append(credential)
-        return user_credentials_list
+    return cls.credentials_list
 				
   @classmethod
   def find_by_account_name(cls, account_name):
