@@ -11,11 +11,8 @@ def create_user(username, password):
 def save_user(user):
   user.save_user()
 
-def del_user(user):
-  user.delete_user()
-
 def verify_user(user_name, password):
-  finding_user = Credentials.find_user(user_name, password)
+  finding_user = User.find_user(user_name, password)
   return finding_user
 
 def create_credential(user_name, account_name, password):
@@ -24,6 +21,9 @@ def create_credential(user_name, account_name, password):
 
 def save_credentials(credential):
   Credentials.save_credentials(credential)
+
+def del_credential(credential):
+  Credentials.delete_credential(credential)
 
 def display_credentials(user_name):
   return Credentials.find_by_user_name(user_name)
@@ -57,16 +57,19 @@ def main():
 
     elif short_code == 'li':
       print("We are glad that you are here.\nEnter your details below to log in to your account")
+      print('')
       user_name = input("Username: ")
       password = str(input("Password: "))
       user_exists = verify_user(user_name, password)
       
       if user_exists == user_name:
         print('-' * 70)
-        print(f"Welcome {user_name}. \nChoose one of the options below to proceed")
+        print(f"Welcome {user_name}, \nChoose one of the options below to proceed")
+        print('')
         while True:
-          print("cc - Add a credential \ndc- Display credentials \nc - Copy password \nex - Exit")    
+          print("cc - To add a credential \ndc - To display credentials \nd - To delete a credential \nc - To copy a password \nex - To exit")    
           short_code = input ("Enter code: ").lower()
+          print('')
           if short_code == "cc":
             print("Enter your credentials below")
             account_name = input("Name of site: ")
@@ -92,10 +95,11 @@ def main():
             if display_credentials(user_name):
               print("Here is a list of all your credentials")
               print('')
-              for credential in display_credentials(user_name):
-                print(f'Account Name: {credential.account_name}  UserName: {credential.user_name}  Password: {credential.password}')
+              for user in display_credentials(user_name):
+                print(f'Account Name: {user.account_name}  UserName: {user.user_name}  Password: {user.password}')
+              print('')
             else:
-              print("You have not any saved credentials yet")
+              print("There are no saved credentials")
           elif short_code == "c":
             choose_site = input("Enter name of site you want to copy: ")
             copy_credential(choose_site)
@@ -106,6 +110,8 @@ def main():
             break
           else:
             print("Please check your short code and try again")
+      else:
+        print("Invalid login credentials. Check your username and password and then try again")
     elif short_code == "ex":
       print("We are sorry to see you leave. Goodbye!!")
       break

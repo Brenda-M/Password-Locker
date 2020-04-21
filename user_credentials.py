@@ -90,12 +90,6 @@ class Credentials:
     copy_credential = Credentials.find_by_account_name(account_name)
     return pyperclip.copy(copy_credential.password)
   
-  @classmethod
-  def display_credentials(cls):
-    '''
-    method that returns the accounts list
-    '''
-    return cls.user_credentials_list
 
 
     
